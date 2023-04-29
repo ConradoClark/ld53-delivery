@@ -12,7 +12,10 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(RoomObject))]
 public class EnemySpawnZone : BaseGameRunner, IGenerator<int, float>
 {
+    [field: SerializeField]
     public float MinSpawnFrequencyInSeconds { get; private set; }
+
+    [field: SerializeField]
     public float MaxSpawnFrequencyInSeconds { get; private set; }
     public float LastSpawnTime { get; private set; }
     public float NextSpawnTime { get; private set; }
