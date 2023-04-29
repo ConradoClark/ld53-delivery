@@ -1,4 +1,5 @@
 ﻿using Licht.Unity.Objects;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomObject : BaseGameObject
@@ -16,6 +17,12 @@ public class RoomObject : BaseGameObject
         Room.Add(this);
         Room.OnDeactivation += Room_OnDeactivation;
         Room.OnActivation += Room_OnActivation;
+    }
+
+    private void OnDestroy()
+    {
+        Room.OnDeactivation -= Room_OnDeactivation;
+        Room.OnActivation -= Room_OnActivation;
     }
 
     private void Room_OnActivation()

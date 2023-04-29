@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class Weapon : BaseGameObject
 {
-
+    [field: SerializeField]
+    public int BaseDamage { get; private set; }
     [field: SerializeField]
     public StatsHolder Source { get; set; }
 
@@ -55,6 +56,7 @@ public class Weapon : BaseGameObject
         return WeaponHitPoolManager.GetEffect(WeaponHitPrefab)
             .TryGetFromPool(out weaponHit, hit =>
             {
+                hit.BaseDamage = CalculateDamage();
                 hit.ObjectStats = Source.GetStats();
                 hit.Target = target;
                 var offsetDir = (Vector3)((Vector2)(target.position - transform.position)).normalized;
@@ -63,5 +65,8 @@ public class Weapon : BaseGameObject
             });
     }
 
-
+    private int CalculateDamage()
+    {
+        return BaseDamage;
+    }
 }
