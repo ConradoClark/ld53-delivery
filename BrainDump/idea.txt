@@ -1,0 +1,13 @@
+Final Idea: Prototype ARPG With BEEES
+
+- Carry pollen from one flower to another to make an area flourish
+- Bees are being affected by social media and refusing to pollinate
+- They're fighting whoever tries to pollinate
+- ARPG, but kinda Vampire Survivors, you can only use dodge moves, attacks are automatically issued
+- Contact damage, and projectiles
+- Random loot, only one equipment slot, controlled by NP (Nectar Points)
+- Level ups, fight enemies, multiple maps, enemies respawn
+- Mini map (maybe tailored, I don't think I'll have time to make it random)
+- Random enemies, random loot
+- Skill Tree (in the shape of a flower), where you can upgrade your bee
+- Attacks and defensive mechanisms are activated by your equipment, so your loot can improve your attacks (your skills could, also, do that)

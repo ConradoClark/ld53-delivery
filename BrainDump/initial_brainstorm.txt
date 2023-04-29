@@ -1,0 +1,45 @@
+Delivery
+
+Brainstorming
+- Delivering packages to someone
+- Intercepting deliveries
+- Helping deliveries get there faster
+- Maybe some kinda mario & wario thing
+- Trade routes
+- Santa (deliver presents)
+- Fedex (packages and/or paperboy style)
+- Carrying something from point A to point B
+- Carrying things may change how you play the game
+- Help someone carry something to somewhere
+- Make efficient routes to deliver stuff
+- Timer-based deliveries (food cannot get cold, gift needs to arrive before birthday, etc)
+- Taking care so the package gets there safely (hazards)
+- Top-down, protect the package kinda thing?
+- Play as santa, figure out presents etc, kinda carmem sandiego, adventure thing
+- Communication (delivering a message)
+- Message in the bottle kinda thing
+- What things can be delivered?
+  + General products (packages)
+  + Food
+  + Presents/Gifts
+  + Newspapers
+  + Organs
+  + Medicine
+  + People?
+- You can play either as:
+  + The one who delivers
+  + The one who helps delivering
+  + The one who makes something for delivery
+  + The recipient of the delivery
+- A game mocking you for being the delivery person (mocking MMOs kinda thing)
+- You are the present?
+- What prevents the thing from being delivered?
+  + Delivery as a throwing mechanic (controls challenge)
+  + Other actors trying to stop it (gameplay challenge)
+  + There's a timer and you have to be fast
+- How to incorporate the theme "Delivery" into everything on the game?
+  + By being the deliverable?
+  + By allowing deliverables to change game mechanics
+- Gift factory
+  + Make machines to build gifts and to deliver them
+  + Like a factorio kinda thing?
