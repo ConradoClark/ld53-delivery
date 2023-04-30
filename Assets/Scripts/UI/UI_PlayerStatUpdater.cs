@@ -8,11 +8,14 @@ using Licht.Unity.Objects;
 using TMPro;
 using UnityEngine;
 
-public class UI_PlayerHPUpdater : BaseGameObject
+public class UI_PlayerStatUpdater : BaseGameObject
 {
     [field:SerializeField]
     public TMP_Text TextComponent { get; private set; }
     private PlayerIdentifier _player;
+
+    [field: SerializeField]
+    public string Stat { get;private set; }
 
     protected override void OnAwake()
     {
@@ -26,8 +29,8 @@ public class UI_PlayerHPUpdater : BaseGameObject
         var stats = _player.PlayerStats.GetStats();
         if (stats == null) return;
 
-        stats.Ints.GetStat(Constants.StatNames.HP).OnChange += UI_PlayerHPUpdater_OnChange;
-        TextComponent.text = stats.Ints[Constants.StatNames.HP].ToString();
+        stats.Ints.GetStat(Stat).OnChange += UI_Player_OnChange;
+        TextComponent.text = stats.Ints[Stat].ToString();
     }
 
     protected override void OnDisable()
@@ -36,10 +39,10 @@ public class UI_PlayerHPUpdater : BaseGameObject
         var stats = _player.PlayerStats.GetStats();
         if (stats == null) return;
 
-        stats.Ints.GetStat(Constants.StatNames.HP).OnChange -= UI_PlayerHPUpdater_OnChange;
+        stats.Ints.GetStat(Stat).OnChange -= UI_Player_OnChange;
     }
 
-    private void UI_PlayerHPUpdater_OnChange(Licht.Unity.Objects.Stats.ScriptStat<int>.StatUpdate obj)
+    private void UI_Player_OnChange(Licht.Unity.Objects.Stats.ScriptStat<int>.StatUpdate obj)
     {
         TextComponent.text = obj.NewValue.ToString();
     }

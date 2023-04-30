@@ -16,6 +16,8 @@ public class EnemyDieWhenZeroHP : BaseGameObject
         DefaultMachinery.AddBasicMachine(DelayedEnable());
     }
 
+    public event Action OnDeath;
+
     private IEnumerable<IEnumerable<Action>> DelayedEnable()
     {
         yield return TimeYields.WaitOneFrameX;
@@ -40,6 +42,8 @@ public class EnemyDieWhenZeroHP : BaseGameObject
     {
         Debug.Log("HP Value: " + obj.NewValue);
         if (obj.NewValue > 0) return;
+
+        OnDeath?.Invoke();
         Enemy.EndEffect();
     }
 }

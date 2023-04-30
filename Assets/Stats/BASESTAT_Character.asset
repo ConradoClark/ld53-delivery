@@ -21,9 +21,9 @@ MonoBehaviour:
     Name: MaxHP
   - _stat: 30
     Name: HP
-  - _stat: 20
-    Name: MaxHoney
-  - _stat: 20
-    Name: Honey
+  - _stat: 15
+    Name: MaxPP
+  - _stat: 0
+    Name: PP
   <FloatStats>k__BackingField: []
   <StringStats>k__BackingField: []

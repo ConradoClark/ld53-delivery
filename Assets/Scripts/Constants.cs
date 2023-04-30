@@ -12,7 +12,7 @@ public static class Constants
         public static string Defense = nameof(Defense);
         public static string HP = nameof(HP);
         public static string MaxHP= nameof(MaxHP);
-        public static string Honey = nameof(Honey);
-        public static string MaxHoney = nameof(MaxHoney);
+        public static string PP = nameof(PP);
+        public static string MaxPP = nameof(MaxPP);
     }
 }
