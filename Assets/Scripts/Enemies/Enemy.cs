@@ -52,10 +52,14 @@ public class Enemy : PooledComponent
         });
     }
 
+    public event Action OnRandomize;
+
     public void Randomize()
     {
         if (CurrentStats!=null) DestroyImmediate(CurrentStats);
+
         CurrentStats = Instantiate(BaseStats);
+        OnRandomize?.Invoke();
 
         if (Type is EnemyType.Normal or EnemyType.Boss) return;
     }
