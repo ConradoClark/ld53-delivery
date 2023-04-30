@@ -40,7 +40,6 @@ public class EnemyDieWhenZeroHP : BaseGameObject
 
     private void OnEnemyHPChange(Licht.Unity.Objects.Stats.ScriptStat<int>.StatUpdate obj)
     {
-        Debug.Log("HP Value: " + obj.NewValue);
         if (obj.NewValue > 0) return;
 
         OnDeath?.Invoke();

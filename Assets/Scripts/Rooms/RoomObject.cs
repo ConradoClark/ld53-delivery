@@ -21,6 +21,7 @@ public class RoomObject : BaseGameObject
         Room.Add(this);
         Room.OnDeactivation += Room_OnDeactivation;
         Room.OnActivation += Room_OnActivation;
+        if (!Room.IsActive) Room_OnDeactivation();
     }
 
     protected override void OnEnable()

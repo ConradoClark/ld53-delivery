@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Licht.Unity.CharacterControllers;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
@@ -16,4 +17,7 @@ public class PlayerIdentifier : BaseGameObject
     public StatsHolder PlayerStats { get; private set; }
 
     public Room CurrentRoom { get; set; }
+
+    [field: SerializeField]
+    public LichtTopDownMoveController MoveController { get; private set; }
 }

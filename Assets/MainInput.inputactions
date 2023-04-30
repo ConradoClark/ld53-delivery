@@ -169,10 +169,21 @@
                 {
                     "name": "",
                     "id": "68a3daee-bb24-48dd-9ee4-c362670b56b4",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5faeed2-b6e9-46a5-a4b8-891fcbfff092",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
