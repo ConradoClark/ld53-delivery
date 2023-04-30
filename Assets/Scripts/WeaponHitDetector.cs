@@ -11,6 +11,8 @@ using UnityEngine;
 
 public class WeaponHitDetector : BaseGameRunner
 {
+    [field: SerializeField]
+    public LayerMask LayerMask { get; private set; }
     [field:SerializeField]
     public Damageable Damageable { get; private set; }
 
@@ -31,7 +33,8 @@ public class WeaponHitDetector : BaseGameRunner
             var hits = triggers.SelectMany(t => t.Item2).ToArray();
             foreach (var hitCollision in hits)
             {
-                if (!_physics.TryGetPhysicsObjectByCollider(hitCollision.Collider, out var hitObject) ||
+                if (!LayerMask.Contains(hitCollision.Collider.gameObject.layer) ||
+                    !_physics.TryGetPhysicsObjectByCollider(hitCollision.Collider, out var hitObject) ||
                     !hitObject.TryGetCustomObject<WeaponHit>(out var hit) ||
                     hit.PhysicsObject.CompareTag(Trigger.PhysicsObject.tag)
                    )

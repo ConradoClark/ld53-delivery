@@ -50,7 +50,7 @@ public class EnemySpawnZone : BaseGameRunner, IGenerator<int, float>
     protected override void OnEnable()
     {
         base.OnEnable();
-        _spawned = false;
+        _spawned = _enemies.Any(e => e.IsActive);
     }
 
     protected override IEnumerable<IEnumerable<Action>> Handle()

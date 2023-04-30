@@ -272,7 +272,7 @@ MonoBehaviour:
   <RunOnEnable>k__BackingField: 1
   <Loop>k__BackingField: 0
   <TimerReference>k__BackingField: {fileID: 0}
-  <Speed>k__BackingField: 3
+  <Speed>k__BackingField: 6
 --- !u!61 &7266514195910345356
 BoxCollider2D:
   m_ObjectHideFlags: 0

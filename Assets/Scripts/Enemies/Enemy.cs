@@ -10,12 +10,17 @@ using UnityEngine;
 
 public class Enemy : PooledComponent
 {
+    [field: SerializeField]
+    public ScriptPrefab FloatingHPCounterPrefab { get; private set; }
     public RoomObject RoomObject { get; set; }
     [field: SerializeField]
     public ObjectStats BaseStats { get; private set; }
 
     [field:SerializeField]
     public EnemyType Type { get; private set; }
+
+    [field: SerializeField]
+    public Vector3 HPBarPositionOffset { get; private set; }
 
     [Serializable]
     public enum EnemyType
@@ -27,6 +32,24 @@ public class Enemy : PooledComponent
     }
     
     public ObjectStats CurrentStats { get; private set; }
+
+    private FloatingHPCounterPool _counterPool;
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+        _counterPool = SceneObject<FloatingHPCounterPoolManager>.Instance(true).GetEffect(FloatingHPCounterPrefab);
+    }
+
+    protected override void OnActivation()
+    {
+        base.OnActivation();
+        _counterPool.TryGetFromPool(out _, counter =>
+        {
+            counter.Source = this;
+            counter.PositionOffset = HPBarPositionOffset;
+            counter.Stats = CurrentStats;
+        });
+    }
 
     public void Randomize()
     {
