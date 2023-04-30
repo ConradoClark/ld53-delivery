@@ -1,5 +1,129 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &376998713616717796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2570933192174805728}
+  - component: {fileID: 4004868806108727006}
+  m_Layer: 10
+  m_Name: ContactDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2570933192174805728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376998713616717796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8585922007055733600}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4004868806108727006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376998713616717796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31abbbae84dee594caf8f68e0ad3be4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Enemy>k__BackingField: {fileID: 3208098516986346563}
+  <PhysicsObject>k__BackingField: {fileID: 1571138044840662365}
+  <BaseDamage>k__BackingField: 5
+--- !u!1 &659132407341979304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013577856070423268}
+  - component: {fileID: 9190339455554088530}
+  m_Layer: 10
+  m_Name: ContactDamageCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013577856070423268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659132407341979304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2483161269922382621}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &9190339455554088530
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659132407341979304}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.82}
+  m_EdgeRadius: 0
 --- !u!1 &1177710676644606716
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +201,7 @@ Transform:
   m_Children:
   - {fileID: 6929467927170591107}
   - {fileID: 8638235081194331}
+  - {fileID: 1013577856070423268}
   m_Father: {fileID: 4939315697458222970}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9202162698207724346}
   - component: {fileID: 8817629915678388482}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +488,7 @@ GameObject:
   - component: {fileID: 8026425444445654440}
   - component: {fileID: 171447264497588710}
   - component: {fileID: 125071686432604123}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ShadowHit
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1006,6 +1131,7 @@ Transform:
   m_Children:
   - {fileID: 2280256255968413013}
   - {fileID: 7121149092518637704}
+  - {fileID: 2570933192174805728}
   m_Father: {fileID: 4939315697458222970}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1214,6 +1340,7 @@ GameObject:
   - component: {fileID: 3208098516986346563}
   - component: {fileID: 1571138044840662365}
   - component: {fileID: 6156890247605150633}
+  - component: {fileID: 3152492194278960720}
   m_Layer: 10
   m_Name: DroneBee_Test
   m_TagString: Enemy
@@ -1255,6 +1382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveOnInitialization: 0
   <FloatingHPCounterPrefab>k__BackingField: {fileID: 11400000, guid: b412a29a4215c8144978b7dd205d8a83, type: 2}
+  <RoomObject>k__BackingField: {fileID: 3152492194278960720}
   <BaseStats>k__BackingField: {fileID: 11400000, guid: 076620f0b84d3144292a9df04be45460, type: 2}
   <Type>k__BackingField: 0
   <HPBarPositionOffset>k__BackingField: {x: -0.36, y: 0.6, z: 0}
@@ -1279,7 +1407,8 @@ MonoBehaviour:
   - {fileID: 5710058925266904835}
   - {fileID: 7546685750959642375}
   - {fileID: 125071686432604123}
-  AdditionalColliders: []
+  AdditionalColliders:
+  - {fileID: 9190339455554088530}
   CalculatedSpeed: {x: 0, y: 0}
 --- !u!114 &6156890247605150633
 MonoBehaviour:
@@ -1294,6 +1423,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Enemy>k__BackingField: {fileID: 3208098516986346563}
+--- !u!114 &3152492194278960720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355567915415841459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e676952d75dcd46a4b7af1942c74e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AlwaysActive>k__BackingField: 0
 --- !u!1 &8629227851277398753
 GameObject:
   m_ObjectHideFlags: 0

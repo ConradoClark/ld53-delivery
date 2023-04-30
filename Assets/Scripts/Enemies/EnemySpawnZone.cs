@@ -90,7 +90,7 @@ public class EnemySpawnZone : BaseGameRunner, IGenerator<int, float>
                 {
                     var spawnPos = GetRandomPositionInZone();
                     e.transform.position = spawnPos;
-                    e.RoomObject = _roomObject;
+                    e.RoomObject.SetRoomInstance(_roomObject.Room);
                     e.Randomize();
                 })) continue;
 

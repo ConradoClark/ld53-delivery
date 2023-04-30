@@ -11,4 +11,9 @@ public class PlayerIdentifier : BaseGameObject
 {
     [field:SerializeField]
     public LichtPhysicsObject PhysicsObject { get; private set; }
+
+    [field: SerializeField]
+    public StatsHolder PlayerStats { get; private set; }
+
+    public Room CurrentRoom { get; set; }
 }

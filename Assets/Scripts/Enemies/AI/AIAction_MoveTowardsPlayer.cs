@@ -29,8 +29,8 @@ public class AIAction_MoveTowardsPlayer : BaseAIAction
         {
             var direction = (_player.transform.position - PhysicsObject.transform.position)
                 .normalized;
-            PhysicsObject.ApplySpeed(direction * Speed);
-        }, breakCondition);
+            if (ComponentEnabled) PhysicsObject.ApplySpeed(direction * Speed);
+        }, () => !ComponentEnabled || breakCondition());
     }
 
     public override void OnInterrupt()

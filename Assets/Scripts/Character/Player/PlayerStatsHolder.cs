@@ -10,6 +10,7 @@ public class PlayerStatsHolder : StatsHolder
 {
     [field:SerializeField]
     public ObjectStats Stats { get; private set; }
+
     public override ObjectStats GetStats()
     {
         return Stats;

@@ -8,12 +8,27 @@ public class RoomObject : BaseGameObject
 
     [field:SerializeField]
     public bool AlwaysActive { get; private set; }
+
+    private bool _addedToRoom;
+
     protected override void OnAwake()
     {
         base.OnAwake();
         Room = GetComponentInParent<Room>(true);
         if (Room == null) return;
 
+        _addedToRoom = true;
+        Room.Add(this);
+        Room.OnDeactivation += Room_OnDeactivation;
+        Room.OnActivation += Room_OnActivation;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (Room == null || _addedToRoom) return;
+
+        _addedToRoom = true;
         Room.Add(this);
         Room.OnDeactivation += Room_OnDeactivation;
         Room.OnActivation += Room_OnActivation;
@@ -21,6 +36,7 @@ public class RoomObject : BaseGameObject
 
     private void OnDestroy()
     {
+        if (Room == null) return;
         Room.OnDeactivation -= Room_OnDeactivation;
         Room.OnActivation -= Room_OnActivation;
     }
@@ -34,5 +50,10 @@ public class RoomObject : BaseGameObject
     {
         if (AlwaysActive) return;
         gameObject.SetActive(false);
+    }
+
+    public void SetRoomInstance(Room room)
+    {
+        Room = room;
     }
 }

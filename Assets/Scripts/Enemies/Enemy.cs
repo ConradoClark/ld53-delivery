@@ -12,6 +12,7 @@ public class Enemy : PooledComponent
 {
     [field: SerializeField]
     public ScriptPrefab FloatingHPCounterPrefab { get; private set; }
+    [field: SerializeField]
     public RoomObject RoomObject { get; set; }
     [field: SerializeField]
     public ObjectStats BaseStats { get; private set; }
