@@ -12,17 +12,31 @@ public class WeaponTargetFinder : BaseGameObject
     [field: SerializeField]
     [field: TagField]
     public string TargetTag { get; protected set; }
-    public bool FindTarget(out Transform target)
-    {
-        var maybe = GameObject.FindGameObjectsWithTag(TargetTag).FirstOrDefault();
 
-        if (maybe == null)
+
+    public virtual bool FindTarget(float range, out Transform target)
+    {
+        var objects = GameObject.FindGameObjectsWithTag(TargetTag);
+
+        var closestInRange = objects
+            .Select(obj => IsInRange(range, obj.transform))
+            .Where(obj=>obj.isInRange)
+            .OrderBy(obj => obj.distance)
+            .FirstOrDefault();
+
+        if (closestInRange.target == null)
         {
             target = null;
             return false;
         }
 
-        target = maybe.transform;
+        target = closestInRange.target;
         return true;
+    }
+
+    private (Transform target, bool isInRange, float distance) IsInRange(float range, Transform target)
+    {
+        var distance = Vector2.Distance(target.position, transform.position);
+        return (target, distance <= range, distance);
     }
 }

@@ -4,24 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Licht.Impl.Orchestration;
-using Licht.Unity.Extensions;
+using Licht.Unity.Objects;
 using UnityEngine;
 
-public class DialogueInteraction : InteractiveAction
+public class SaveWaypointInteraction :InteractiveAction
 {
     [field:SerializeField]
-    [field:Multiline]
-    public string[] Texts { get; private set; }
-    private UI_DialogueBar _dialogueBar;
+    public DialogueInteraction TextInteraction { get; private set; }
+
+    [field: SerializeField]
+    public Waypoint Waypoint { get; private set; }
 
     protected override void OnAwake()
     {
         base.OnAwake();
-        _dialogueBar = _dialogueBar.FromScene(true);
     }
 
     public override IEnumerable<IEnumerable<Action>> PerformAction()
     {
-        yield return _dialogueBar.Show(Texts).AsCoroutine();
+        yield return TextInteraction.PerformAction().AsCoroutine();
+        Waypoint.Save();
     }
 }

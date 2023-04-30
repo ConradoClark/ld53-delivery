@@ -24,6 +24,9 @@ public class Weapon : BaseGameObject
 
     protected WeaponHitPoolManager WeaponHitPoolManager;
 
+    [field: SerializeField]
+    public float Range { get; private set; }
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -40,7 +43,7 @@ public class Weapon : BaseGameObject
     {
         while (ComponentEnabled)
         {
-            if (Source != null && TargetFinder.FindTarget(out var target))
+            if (Source != null && TargetFinder.FindTarget(CalculateRange(), out var target))
             {
                 TrySpawnWeaponHit(out _, target);
                 yield return TimeYields.WaitMilliseconds(GameTimer, CooldownInMs);
@@ -68,5 +71,10 @@ public class Weapon : BaseGameObject
     private int CalculateDamage()
     {
         return BaseDamage;
+    }
+
+    private float CalculateRange()
+    {
+        return Range;
     }
 }

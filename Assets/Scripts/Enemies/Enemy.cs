@@ -23,6 +23,9 @@ public class Enemy : PooledComponent
     [field: SerializeField]
     public Vector3 HPBarPositionOffset { get; private set; }
 
+    [field: SerializeField]
+    public bool FixedObject { get; private set; }
+
     [Serializable]
     public enum EnemyType
     {
@@ -39,6 +42,14 @@ public class Enemy : PooledComponent
     {
         base.OnAwake();
         _counterPool = SceneObject<FloatingHPCounterPoolManager>.Instance(true).GetEffect(FloatingHPCounterPrefab);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (!FixedObject) return;
+        Randomize();
+        OnActivation();
     }
 
     protected override void OnActivation()

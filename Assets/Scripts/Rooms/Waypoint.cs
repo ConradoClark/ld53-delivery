@@ -10,16 +10,11 @@ using Licht.Unity.Physics.CollisionDetection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Waypoint : BaseGameRunner
+public class Waypoint : BaseGameObject
 {
-    [field:SerializeField]
-    public InputActionReference ConfirmInput { get; private set; }
-    [field: SerializeField]
-    public LichtPhysicsCollisionDetector CollisionDetector { get; private set; }
-
     private WaypointManager _waypointManager;
     public RoomObject RoomObject { get; private set; }
-    
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -27,14 +22,8 @@ public class Waypoint : BaseGameRunner
         _waypointManager = _waypointManager.FromScene();
     }
 
-    protected override IEnumerable<IEnumerable<Action>> Handle()
+    public void Save()
     {
-        if (CollisionDetector.Triggers.Any(t => t.TriggeredHit) 
-            && ConfirmInput.action.WasPerformedThisFrame())
-        {
-            _waypointManager.CurrentWaypoint = this;
-        }
-
-        yield return TimeYields.WaitOneFrameX;
+        _waypointManager.CurrentWaypoint = this;
     }
 }

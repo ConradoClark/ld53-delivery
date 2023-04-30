@@ -810,6 +810,8 @@ GameObject:
   - component: {fileID: 7780092390516686110}
   - component: {fileID: 4909049513147922675}
   - component: {fileID: 8461719202189432400}
+  - component: {fileID: 1049835404699897155}
+  - component: {fileID: 9053832426823724967}
   m_Layer: 10
   m_Name: GetHit
   m_TagString: Untagged
@@ -878,6 +880,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatsHolder>k__BackingField: {fileID: 6156890247605150633}
+--- !u!114 &1049835404699897155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115146888676632001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c857aef368b4a44bc8f3a6a4b75bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SpriteRenderer>k__BackingField: {fileID: 7043459955525884456}
+  <DurationInMs>k__BackingField: 300
+  <Color>k__BackingField: {r: 0.7058824, g: 0.3254902, b: 0.24705884, a: 0.5529412}
+--- !u!114 &9053832426823724967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115146888676632001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95277ebf67204984c9b219d80d5de292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damageable>k__BackingField: {fileID: 4909049513147922675}
+  <TintFlash>k__BackingField: {fileID: 1049835404699897155}
 --- !u!1 &3356836823527294097
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +961,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 86c9dc3b61346a144935ebe34ea3aa95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1386,6 +1417,7 @@ MonoBehaviour:
   <BaseStats>k__BackingField: {fileID: 11400000, guid: 076620f0b84d3144292a9df04be45460, type: 2}
   <Type>k__BackingField: 0
   <HPBarPositionOffset>k__BackingField: {x: -0.36, y: 0.6, z: 0}
+  <FixedObject>k__BackingField: 0
 --- !u!114 &1571138044840662365
 MonoBehaviour:
   m_ObjectHideFlags: 0

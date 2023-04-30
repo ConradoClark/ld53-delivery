@@ -63,7 +63,7 @@ public class UI_FloatingHPCounter : PooledComponent
     {
         if (Source == null) return;
 
-        if (!Source.IsActive)
+        if (!Source.ComponentEnabled)
         {
             EndEffect();
             return;
