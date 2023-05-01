@@ -53,7 +53,7 @@ MonoBehaviour:
   <Range>k__BackingField: 6
   <WeaponIcon>k__BackingField: {fileID: 21300000, guid: e2a2802b8f17e5445aceffb9bb7b5595, type: 3}
   <WeaponName>k__BackingField: P.BOMB
-  <Rarity>k__BackingField: 0
+  <Rarity>k__BackingField: 3
 --- !u!114 &4433194382707901749
 MonoBehaviour:
   m_ObjectHideFlags: 0

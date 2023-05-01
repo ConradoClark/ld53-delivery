@@ -52,8 +52,8 @@ MonoBehaviour:
   <WeaponHitPrefab>k__BackingField: {fileID: 11400000, guid: 087db965c2a5aa042a5948dd6f473496, type: 2}
   <Range>k__BackingField: 6
   <WeaponIcon>k__BackingField: {fileID: 21300000, guid: 7756e6af2a9683c478c26695339c6891, type: 3}
-  <WeaponName>k__BackingField: Sting
-  <Rarity>k__BackingField: 0
+  <WeaponName>k__BackingField: Blue Sting
+  <Rarity>k__BackingField: 2
 --- !u!114 &4433194382707901749
 MonoBehaviour:
   m_ObjectHideFlags: 0
