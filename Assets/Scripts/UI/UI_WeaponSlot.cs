@@ -25,6 +25,7 @@ public class UI_WeaponSlot : BaseGameObject
     public void SetWeapon(Weapon weapon)
     {
         AssociatedWeapon = weapon;
+        LoadWeaponData();
     }
 
     private void LoadWeaponData()

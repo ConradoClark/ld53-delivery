@@ -6,14 +6,20 @@ using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Physics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickupObjects : BaseGameRunner
 {
+    [field: SerializeField]
+    public InputActionReference  Confirm { get; private set; }
+
     [field: SerializeField]
     public LayerMask LayerMask { get; private set; }
 
     [field: SerializeField]
     public MultiCollisionTrigger Trigger { get; private set; }
+
+    public CanBePickedUp CurrentHover { get;private set; }
 
     private LichtPhysics _physics;
     protected override void OnAwake()
@@ -31,15 +37,26 @@ public class PickupObjects : BaseGameRunner
             {
                 if (!LayerMask.Contains(hitCollision.Collider.gameObject.layer) ||
                     !_physics.TryGetPhysicsObjectByCollider(hitCollision.Collider, out var pickupObject) ||
-                    !pickupObject.TryGetCustomObject<CanBePickedUp>(out var pickup) ||
-                    !pickup.PickedUpOnTouch
-                   )
+                    !pickupObject.TryGetCustomObject<CanBePickedUp>(out var pickup))
                 {
+                    CurrentHover = null;
                     continue;
                 }
 
+                CurrentHover = pickup;
+
+                if (!pickup.PickedUpOnTouch && !Confirm.action.WasPerformedThisFrame())
+                {
+                    break;
+                }
+
                 pickup.Pickup();
+                break;
             }
+        }
+        else
+        {
+            CurrentHover = null;
         }
 
         yield return TimeYields.WaitOneFrameX;

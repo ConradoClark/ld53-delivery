@@ -18,6 +18,8 @@ public class WeaponHit : PooledComponent
 
     public bool Critical { get; set; }
 
+    public float Range { get; set; }
+
     public int BaseDamage { get; set; }
     [field:SerializeField]
     public string DamageType { get; set; }
@@ -27,6 +29,11 @@ public class WeaponHit : PooledComponent
     [field: SerializeField]
     public TintFlash Flash { get; private set; }
 
+    [field: SerializeField]
+    public bool Stays { get; private set; }
+
+    private List<LichtPhysicsObject> _activatedFor;
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -35,16 +42,26 @@ public class WeaponHit : PooledComponent
 
     protected override void OnEnable()
     {
+        _activatedFor = new List<LichtPhysicsObject>();
         base.OnEnable();
-        if (Critical)
+        if (Critical && Flash != null)
         {
             Flash.Flash();
         }
     }
 
-    public void RegisterImpact(LichtPhysicsObject target)
+    public bool RegisterImpact(LichtPhysicsObject target)
     {
-        OnWeaponHitContact?.Invoke(target);
+        var registered = false;
+        if (!_activatedFor.Contains(target))
+        {
+            registered = true;
+            OnWeaponHitContact?.Invoke(target);
+            _activatedFor.Add(target);
+        }
+
+        if (Stays) return registered;
         EndEffect();
+        return registered;
     }
 }

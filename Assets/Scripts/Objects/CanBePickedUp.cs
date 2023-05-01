@@ -15,6 +15,15 @@ public class CanBePickedUp : BaseGameObject
     [field: SerializeField]
     public bool PickedUpOnTouch { get; private set; }
 
+    [field: SerializeField]
+    public bool ShowDescription { get; private set; }
+
+    [field: SerializeField]
+    public string Description { get; set; }
+
+    [field: SerializeField]
+    public Color DescriptionColor { get; set; }
+
     protected override void OnAwake()
     {
         base.OnAwake();

@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class Weapon : BaseGameObject
 {
     [field: SerializeField]
-    public int BaseDamage { get; private set; }
+    public int BaseDamage { get;  set; }
     [field: SerializeField]
     public StatsHolder Source { get; set; }
 
@@ -32,25 +32,42 @@ public class Weapon : BaseGameObject
     public Sprite WeaponIcon { get; private set; }
 
     [field: SerializeField]
-    public string WeaponName { get; private set; }
+    public string WeaponName { get; set; }
+
+    [field: SerializeField]
+    public float Rarity { get; set; }
+
+    private WeaponsManager _weaponsManager;
 
     protected override void OnAwake()
     {
         base.OnAwake();
         WeaponHitPoolManager = WeaponHitPoolManager.FromScene(true);
+        _weaponsManager = _weaponsManager.FromScene();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        if (Source == null) Source = GetComponentInParent<StatsHolder>();
         DefaultMachinery.AddBasicMachine(Handle());
     }
 
     protected IEnumerable<IEnumerable<Action>> Handle()
     {
+        while (Source == null)
+        {
+            yield return TimeYields.WaitOneFrameX;
+        }
+
         var stats = Source.GetStats();
         while (ComponentEnabled)
         {
+            while (_weaponsManager.OnGlobalCooldown)
+            {
+                yield return TimeYields.WaitOneFrameX;
+            }
+
             if (Source != null && TargetFinder.FindTargets(CalculateRange(), stats.Ints[Constants.StatNames.AoE],
                     out var targets))
             {
@@ -58,6 +75,8 @@ public class Weapon : BaseGameObject
                 {
                     TrySpawnWeaponHit(out _, target);
                 }
+
+                DefaultMachinery.AddBasicMachine(_weaponsManager.AddGlobalCooldown(75));
                 
                 yield return TimeYields.WaitMilliseconds(GameTimer, CalculateCoolDown());
                 continue;
@@ -73,6 +92,7 @@ public class Weapon : BaseGameObject
         return WeaponHitPoolManager.GetEffect(WeaponHitPrefab)
             .TryGetFromPool(out weaponHit, hit =>
             {
+                hit.Range = Range;
                 hit.Critical = crit;
                 hit.BaseDamage = CalculateDamage(crit);
                 hit.ObjectStats = Source.GetStats();
@@ -92,7 +112,7 @@ public class Weapon : BaseGameObject
 
         return Random.value < baseCrit + luckCrit;
     }
-
+    
     private int CalculateDamage(bool critical)
     {
         var stats = Source.GetStats();
@@ -109,5 +129,11 @@ public class Weapon : BaseGameObject
     {
         var stats = Source.GetStats();
         return Mathf.Clamp(CooldownInMs - (stats.Ints[Constants.StatNames.Speed] - 1) * 50, 50, CooldownInMs);
+    }
+
+    public float CalculateRank()
+    {
+        var cdr = 1 - CooldownInMs * 0.001f;
+        return BaseDamage * 2 + Range * 0.25f + cdr * 3 + Rarity;
     }
 }

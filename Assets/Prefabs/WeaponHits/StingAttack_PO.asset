@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StingAttack_PO
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5630397892465319191, guid: a2348fbf95f4d5e44800157f38e86491, type: 3}
-  DefaultPoolSize: 30
+  DefaultPoolSize: 50
   Type: 0

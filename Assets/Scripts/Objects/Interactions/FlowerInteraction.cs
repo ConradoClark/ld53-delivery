@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Licht.Impl.Events;
 using Licht.Impl.Orchestration;
+using Licht.Interfaces.Events;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using Licht.Unity.Objects.Stats;
@@ -42,12 +44,20 @@ public class FlowerInteraction : InteractiveAction
     private UI_ScreenFlash _flash;
     private Color _startingColor;
 
+    public enum FlowerEvents
+    {
+        OnPollinate
+    }
+
+    private IEventPublisher<FlowerEvents> _eventPublisher;
+
     protected override void OnAwake()
     {
         base.OnAwake();
         _player = _player.FromScene();
         _flash = _flash.FromScene(true);
         _startingColor = FlowerSpriteRenderer.color;
+        _eventPublisher = this.RegisterAsEventPublisher<FlowerEvents>();
 
     }
 
@@ -86,6 +96,8 @@ public class FlowerInteraction : InteractiveAction
         {
             yield break;
         }
+
+        _eventPublisher.PublishEvent(FlowerEvents.OnPollinate);
 
         yield return _flash.FadeIn().AsCoroutine();
         FlowerSpriteRenderer.sprite = SuccessSprite;

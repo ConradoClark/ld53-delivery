@@ -41,13 +41,16 @@ public class WeaponHitDetector : BaseGameRunner
                 {
                     continue;
                 }
-                Damageable.Hit(new Damageable.DamageArgs
+
+                if (hit.RegisterImpact(Trigger.PhysicsObject))
                 {
-                    Source = hit.PhysicsObject,
-                    BaseDamage = hit.BaseDamage,
-                    DamageType = hit.DamageType
-                });
-                hit.RegisterImpact(Trigger.PhysicsObject);
+                    Damageable.Hit(new Damageable.DamageArgs
+                    {
+                        Source = hit.PhysicsObject,
+                        BaseDamage = hit.BaseDamage,
+                        DamageType = hit.DamageType
+                    });
+                }
             }
         }
 
