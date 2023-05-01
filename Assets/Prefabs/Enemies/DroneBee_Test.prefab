@@ -494,6 +494,37 @@ MonoBehaviour:
   <PhysicsObject>k__BackingField: {fileID: 1571138044840662365}
   <Speed>k__BackingField: 0.5
   <TimeInSeconds>k__BackingField: 1
+--- !u!1 &1752951505730392246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7755446388793962238}
+  m_Layer: 10
+  m_Name: Target
+  m_TagString: EnemyTarget
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7755446388793962238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752951505730392246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4939315697458222970}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858838677045668016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1536,7 @@ MonoBehaviour:
     Condition: {fileID: 492999738800224128}
     Actions:
     - {fileID: 5130589880571104465}
+    - {fileID: 3521460796077425543}
     Enabled: 1
   - Name: Move Towards Player
     Priority: 2
@@ -1559,6 +1591,7 @@ Transform:
   - {fileID: 2483161269922382621}
   - {fileID: 8585922007055733600}
   - {fileID: 3941640174323706835}
+  - {fileID: 7755446388793962238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

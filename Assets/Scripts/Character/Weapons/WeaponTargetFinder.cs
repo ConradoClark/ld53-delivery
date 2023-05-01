@@ -14,23 +14,25 @@ public class WeaponTargetFinder : BaseGameObject
     public string TargetTag { get; protected set; }
 
 
-    public virtual bool FindTarget(float range, out Transform target)
+    public virtual bool FindTargets(float range, int amount, out Transform[] targets)
     {
         var objects = GameObject.FindGameObjectsWithTag(TargetTag);
 
         var closestInRange = objects
             .Select(obj => IsInRange(range, obj.transform))
-            .Where(obj=>obj.isInRange)
+            .Where(obj => obj.isInRange)
             .OrderBy(obj => obj.distance)
-            .FirstOrDefault();
+            .Take(amount)
+            .Select(obj=>obj.target)
+            .ToArray();
 
-        if (closestInRange.target == null)
+        if (closestInRange.Length == 0)
         {
-            target = null;
+            targets = Array.Empty<Transform>();
             return false;
         }
 
-        target = closestInRange.target;
+        targets = closestInRange;
         return true;
     }
 

@@ -27,6 +27,12 @@ public class Weapon : BaseGameObject
     [field: SerializeField]
     public float Range { get; private set; }
 
+    [field:SerializeField]
+    public Sprite WeaponIcon { get; private set; }
+
+    [field: SerializeField]
+    public string WeaponName { get; private set; }
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -41,11 +47,17 @@ public class Weapon : BaseGameObject
 
     protected IEnumerable<IEnumerable<Action>> Handle()
     {
+        var stats = Source.GetStats();
         while (ComponentEnabled)
         {
-            if (Source != null && TargetFinder.FindTarget(CalculateRange(), out var target))
+            if (Source != null && TargetFinder.FindTargets(CalculateRange(), stats.Ints[Constants.StatNames.AoE],
+                    out var targets))
             {
-                TrySpawnWeaponHit(out _, target);
+                foreach (var target in targets)
+                {
+                    TrySpawnWeaponHit(out _, target);
+                }
+                
                 yield return TimeYields.WaitMilliseconds(GameTimer, CooldownInMs);
                 continue;
             }

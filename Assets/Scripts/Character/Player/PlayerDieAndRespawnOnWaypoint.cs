@@ -51,6 +51,7 @@ public class PlayerDieAndRespawnOnWaypoint : BaseGameObject
     {
         var stats = _player.PlayerStats.GetStats();
         stats.Ints[Constants.StatNames.HP] = stats.Ints[Constants.StatNames.MaxHP];
+        stats.Ints[Constants.StatNames.PP] = 0;
 
         _player.transform.position = _waypointManager.CurrentWaypoint.transform.position;
         if (_player.CurrentRoom != null)_player.CurrentRoom.Deactivate();
