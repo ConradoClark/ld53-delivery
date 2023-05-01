@@ -5,6 +5,7 @@ using Licht.Impl.Orchestration;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Weapon : BaseGameObject
 {
@@ -68,10 +69,12 @@ public class Weapon : BaseGameObject
 
     protected bool TrySpawnWeaponHit(out WeaponHit weaponHit, Transform target)
     {
+        var crit = CalculateCrit();
         return WeaponHitPoolManager.GetEffect(WeaponHitPrefab)
             .TryGetFromPool(out weaponHit, hit =>
             {
-                hit.BaseDamage = CalculateDamage();
+                hit.Critical = crit;
+                hit.BaseDamage = CalculateDamage(crit);
                 hit.ObjectStats = Source.GetStats();
                 hit.Target = target;
                 var offsetDir = (Vector3)((Vector2)(target.position - transform.position)).normalized;
@@ -80,10 +83,21 @@ public class Weapon : BaseGameObject
             });
     }
 
-    private int CalculateDamage()
+    private bool CalculateCrit()
     {
         var stats = Source.GetStats();
-        return BaseDamage + stats.Ints[Constants.StatNames.Attack];
+
+        var baseCrit = 0.02f;
+        var luckCrit = 0.04f * stats.Ints[Constants.StatNames.Luck];
+
+        return Random.value < baseCrit + luckCrit;
+    }
+
+    private int CalculateDamage(bool critical)
+    {
+        var stats = Source.GetStats();
+        var damage = BaseDamage + stats.Ints[Constants.StatNames.Attack];
+        return critical ? Mathf.RoundToInt(damage * 1.5f) : damage;
     }
 
     private float CalculateRange()

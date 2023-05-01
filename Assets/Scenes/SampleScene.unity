@@ -2022,6 +2022,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4a8a278f2415fc4ca0c74f3a8f1dc6c, type: 2}
   - {fileID: 11400000, guid: 61b800996a70908498e2951c36d8d956, type: 2}
   - {fileID: 11400000, guid: 9fda39ae6c66c434d88707241c485abb, type: 2}
+  - {fileID: 11400000, guid: b6694c7202414e148b020500bd3dbc0e, type: 2}
+  - {fileID: 11400000, guid: 507ab5a2af3330647a311a2cdd490b58, type: 2}
   DefaultPoolSize: 30
 --- !u!1 &130783643
 GameObject:
@@ -14793,6 +14795,7 @@ MonoBehaviour:
   <SpriteRenderer>k__BackingField: {fileID: 639849171}
   <DurationInMs>k__BackingField: 300
   <Color>k__BackingField: {r: 0.7058824, g: 0.3254902, b: 0.24705884, a: 0.5529412}
+  <Repeat>k__BackingField: 1
 --- !u!1 &1209419370
 GameObject:
   m_ObjectHideFlags: 0
@@ -23233,6 +23236,7 @@ MonoBehaviour:
   <SpriteRenderer>k__BackingField: {fileID: 2056116687}
   <DurationInMs>k__BackingField: 500
   <Color>k__BackingField: {r: 0.86274517, g: 0.8941177, b: 0.80392164, a: 0.80784315}
+  <Repeat>k__BackingField: 1
 --- !u!61 &2056116690
 BoxCollider2D:
   m_ObjectHideFlags: 0

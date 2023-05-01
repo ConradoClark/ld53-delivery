@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7876063683448983549}
   - component: {fileID: 7535767204260486876}
   m_Layer: 3
-  m_Name: StingParticles_38x36_0
+  m_Name: StingParticles_CRIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &578777619914539468
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: -719836719, guid: e15f9775b1fa7a3439f18f711f42059f, type: 3}
+  m_Sprite: {fileID: -1950863356, guid: b83237062eee518458f3dfa3e45153b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 8239317353140837460}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dab26c9ecd6dd554ebf616bc18039e07, type: 2}
+  m_Controller: {fileID: 9100000, guid: d274b0727e2d8d14f8b0a7ed28f4020c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   <TimerReference>k__BackingField: {fileID: 0}
   <Poolable>k__BackingField: {fileID: 7535767204260486876}
   <Animator>k__BackingField: {fileID: 1341281642635539988}
-  <State>k__BackingField: StingParticles
+  <State>k__BackingField: StingParticles_CRIT
   <CheckTransition>k__BackingField: 0
 --- !u!114 &7535767204260486876
 MonoBehaviour:

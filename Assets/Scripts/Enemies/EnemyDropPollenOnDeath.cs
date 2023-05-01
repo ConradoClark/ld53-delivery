@@ -32,6 +32,7 @@ public class EnemyDropPollenOnDeath : BaseGameObject
     protected override void OnEnable()
     {
         base.OnEnable();
+        _effectsManager ??= _effectsManager.FromScene(true);
         EnemyDeath.OnDeath += EnemyDeath_OnDeath;
     }
 

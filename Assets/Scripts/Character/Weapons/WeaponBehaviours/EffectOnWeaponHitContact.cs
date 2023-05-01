@@ -12,6 +12,10 @@ public class EffectOnWeaponHitContact : BaseGameObject
 {
     [field:SerializeField]
     public ScriptPrefab Effect { get; private set; }
+
+    [field: SerializeField]
+    public ScriptPrefab CritEffect { get; private set; }
+
     private WeaponHit _hit;
 
     protected override void OnAwake()
@@ -28,7 +32,12 @@ public class EffectOnWeaponHitContact : BaseGameObject
 
     private void OnWeaponHitContact(Licht.Unity.Physics.LichtPhysicsObject obj)
     {
-        Effect.TrySpawnEffect(transform.position, out _);
+        if (!_hit.Critical)
+        {
+            Effect.TrySpawnEffect(transform.position, out _);
+            return;
+        }
+        CritEffect.TrySpawnEffect(transform.position, out _);
     }
 
     protected override void OnDisable()

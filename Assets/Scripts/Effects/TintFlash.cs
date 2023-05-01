@@ -17,6 +17,8 @@ public class TintFlash : BaseGameObject
     [field: SerializeField]
     public Color Color { get; private set; }
 
+    [field: SerializeField] public int Repeat { get; private set; } = 1;
+
     private Color _initialTint;
 
     protected override void OnAwake()
@@ -29,31 +31,36 @@ public class TintFlash : BaseGameObject
     {
         DefaultMachinery.AddUniqueMachine($"TintFlash_{gameObject.GetInstanceID()}",
             UniqueMachine.UniqueMachineBehaviour.Replace,
-            HandleFlash());
+            HandleFlash(Repeat));
     }
 
-    private IEnumerable<IEnumerable<Action>> HandleFlash()
+    private IEnumerable<IEnumerable<Action>> HandleFlash(int repeat = 1)
     {
-        SpriteRenderer.material.SetColor("_Tint", _initialTint);
+        if (repeat == 0) repeat = 1;
 
-        yield return SpriteRenderer.GetAccessor()
-            .Material("_Tint")
-            .AsColor()
-            .ToColor(Color)
-            .Over(DurationInMs * 0.00075f)
-            .UsingTimer(GameTimer)
-            .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
-            .Build();
+        for (var i = 0; i < repeat; i++)
+        {
+            SpriteRenderer.material.SetColor("_Tint", _initialTint);
 
-        yield return SpriteRenderer.GetAccessor()
-            .Material("_Tint")
-            .AsColor()
-            .ToColor(_initialTint)
-            .Over(DurationInMs * 0.00025f)
-            .UsingTimer(GameTimer)
-            .Easing(EasingYields.EasingFunction.QuadraticEaseIn)
-            .Build();
+            yield return SpriteRenderer.GetAccessor()
+                .Material("_Tint")
+                .AsColor()
+                .ToColor(Color)
+                .Over(DurationInMs * 0.00075f)
+                .UsingTimer(GameTimer)
+                .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
+                .Build();
 
-        SpriteRenderer.material.SetColor("_Tint", _initialTint);
+            yield return SpriteRenderer.GetAccessor()
+                .Material("_Tint")
+                .AsColor()
+                .ToColor(_initialTint)
+                .Over(DurationInMs * 0.00025f)
+                .UsingTimer(GameTimer)
+                .Easing(EasingYields.EasingFunction.QuadraticEaseIn)
+                .Build();
+
+            SpriteRenderer.material.SetColor("_Tint", _initialTint);
+        }
     }
 }
