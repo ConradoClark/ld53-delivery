@@ -14,7 +14,7 @@ public class TreasureChest : PooledComponent, IGenerator<int,float>
 {
     [field: SerializeField]
     public WeaponDefinition[] WeaponBases { get; private set; }
-    public float RarityFactor { get; private set; }
+    public float RarityFactor { get; set; }
     
     [field: SerializeField]
     public CanBePickedUp PickupInterface { get; private set; }
@@ -54,9 +54,7 @@ public class TreasureChest : PooledComponent, IGenerator<int,float>
     {
         base.OnActivation();
 
-        var rng = Random.value * RarityFactor;
-
-        var possibleWeapons = WeaponBases.Where(w => rng >= w.MinRarity)
+        var possibleWeapons = WeaponBases.Where(w => RarityFactor >= w.MinRarity)
             .ToArray();
 
         var dice = new WeightedDice<WeaponDefinition>(possibleWeapons, this);

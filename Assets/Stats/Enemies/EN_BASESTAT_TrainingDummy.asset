@@ -21,5 +21,9 @@ MonoBehaviour:
     Name: MaxHP
   - _stat: 9999
     Name: HP
-  <FloatStats>k__BackingField: []
+  <FloatStats>k__BackingField:
+  - _stat: 0
+    Name: Rarity
+  - _stat: 0
+    Name: DropChance
   <StringStats>k__BackingField: []

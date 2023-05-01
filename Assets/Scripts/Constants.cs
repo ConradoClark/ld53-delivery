@@ -19,5 +19,7 @@ public static class Constants
         public static string Speed = nameof(Speed);
         public static string Luck = nameof(Luck);
         public static string AoE = nameof(AoE);
+        public static string Rarity = nameof(Rarity);
+        public static string DropChance = nameof(DropChance);
     }
 }

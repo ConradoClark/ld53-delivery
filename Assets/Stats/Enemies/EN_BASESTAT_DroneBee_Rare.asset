@@ -23,5 +23,9 @@ MonoBehaviour:
     Name: HP
   - _stat: 20
     Name: Experience
-  <FloatStats>k__BackingField: []
+  <FloatStats>k__BackingField:
+  - _stat: 0.3
+    Name: Rarity
+  - _stat: 0.15
+    Name: DropChance
   <StringStats>k__BackingField: []
