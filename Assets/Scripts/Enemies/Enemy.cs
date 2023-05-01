@@ -38,6 +38,8 @@ public class Enemy : PooledComponent
     public ObjectStats CurrentStats { get; private set; }
 
     private FloatingHPCounterPool _counterPool;
+
+    private UI_FloatingHPCounter _currentCounter;
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -48,7 +50,12 @@ public class Enemy : PooledComponent
     {
         base.OnEnable();
 
-        _counterPool.TryGetFromPool(out _, counter =>
+        if (_currentCounter != null)
+        {
+            _currentCounter.EndEffect();
+        }
+
+        _counterPool.TryGetFromPool(out _currentCounter, counter =>
         {
             counter.Source = this;
             counter.PositionOffset = HPBarPositionOffset;
@@ -59,6 +66,12 @@ public class Enemy : PooledComponent
         Randomize();
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        _currentCounter = null;
+    }
+
     public event Action OnRandomize;
 
     public void Randomize()
@@ -66,8 +79,14 @@ public class Enemy : PooledComponent
         if (CurrentStats!=null) DestroyImmediate(CurrentStats);
 
         CurrentStats = Instantiate(BaseStats);
+        CurrentStats.Ints[Constants.StatNames.HP] = CurrentStats.Ints[Constants.StatNames.MaxHP];
 
-        _counterPool.TryGetFromPool(out _, counter =>
+        if (_currentCounter != null)
+        {
+            _currentCounter.EndEffect();
+        }
+
+        _counterPool.TryGetFromPool(out _currentCounter, counter =>
         {
             counter.Source = this;
             counter.PositionOffset = HPBarPositionOffset;
@@ -77,5 +96,12 @@ public class Enemy : PooledComponent
         OnRandomize?.Invoke();
 
         if (Type is EnemyType.Normal or EnemyType.Boss) return;
+    }
+
+    private void Update()
+    {
+        if (_currentCounter == null || CurrentStats == null) return;
+        _currentCounter.Source = this;
+        _currentCounter.Stats = CurrentStats;
     }
 }

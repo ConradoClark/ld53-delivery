@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PhysicsObject>k__BackingField: {fileID: 1571138044840662365}
-  <Speed>k__BackingField: 2.5
-  <TimeInSeconds>k__BackingField: 0.8
+  <Speed>k__BackingField: 1.6
+  <TimeInSeconds>k__BackingField: 0.5
 --- !u!1 &1208737956609760253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,7 +1659,7 @@ MonoBehaviour:
   ActiveOnInitialization: 0
   <FloatingHPCounterPrefab>k__BackingField: {fileID: 11400000, guid: b412a29a4215c8144978b7dd205d8a83, type: 2}
   <RoomObject>k__BackingField: {fileID: 3152492194278960720}
-  <BaseStats>k__BackingField: {fileID: 11400000, guid: 076620f0b84d3144292a9df04be45460, type: 2}
+  <BaseStats>k__BackingField: {fileID: 11400000, guid: 98c175f9bd59d964cb9e3607f5964432, type: 2}
   <Type>k__BackingField: 0
   <HPBarPositionOffset>k__BackingField: {x: -0.36, y: 0.6, z: 0}
   <FixedObject>k__BackingField: 0
