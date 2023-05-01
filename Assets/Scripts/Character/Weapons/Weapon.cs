@@ -58,7 +58,7 @@ public class Weapon : BaseGameObject
                     TrySpawnWeaponHit(out _, target);
                 }
                 
-                yield return TimeYields.WaitMilliseconds(GameTimer, CooldownInMs);
+                yield return TimeYields.WaitMilliseconds(GameTimer, CalculateCoolDown());
                 continue;
             }
 
@@ -89,5 +89,11 @@ public class Weapon : BaseGameObject
     private float CalculateRange()
     {
         return Range;
+    }
+
+    private float CalculateCoolDown()
+    {
+        var stats = Source.GetStats();
+        return Mathf.Clamp(CooldownInMs - (stats.Ints[Constants.StatNames.Speed] - 1) * 50, 50, CooldownInMs);
     }
 }

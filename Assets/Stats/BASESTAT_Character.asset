@@ -33,7 +33,7 @@ MonoBehaviour:
     Name: Speed
   - _stat: 1
     Name: Luck
-  - _stat: 2
+  - _stat: 1
     Name: AoE
   <FloatStats>k__BackingField: []
   <StringStats>k__BackingField: []

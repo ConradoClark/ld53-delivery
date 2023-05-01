@@ -20,4 +20,10 @@ public class PlayerIdentifier : BaseGameObject
 
     [field: SerializeField]
     public LichtTopDownMoveController MoveController { get; private set; }
+
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+        GameTimer.Multiplier = 1;
+    }
 }
