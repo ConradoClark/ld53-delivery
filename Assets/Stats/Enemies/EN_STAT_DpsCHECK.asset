@@ -17,9 +17,9 @@ MonoBehaviour:
     Name: Attack
   - _stat: 1
     Name: Defense
-  - _stat: 120
+  - _stat: 220
     Name: MaxHP
-  - _stat: 120
+  - _stat: 220
     Name: HP
   - _stat: 5
     Name: Experience
