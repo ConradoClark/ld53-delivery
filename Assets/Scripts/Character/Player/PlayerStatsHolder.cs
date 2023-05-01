@@ -11,8 +11,14 @@ public class PlayerStatsHolder : StatsHolder
     [field:SerializeField]
     public ObjectStats Stats { get; private set; }
 
+    private ObjectStats _clonedStats;
+
     public override ObjectStats GetStats()
     {
-        return Stats;
+        if (_clonedStats == null)
+        {
+            _clonedStats = Instantiate(Stats);
+        }
+        return _clonedStats;
     }
 }

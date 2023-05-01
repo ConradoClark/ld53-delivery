@@ -25,5 +25,15 @@ MonoBehaviour:
     Name: MaxPP
   - _stat: 0
     Name: PP
+  - _stat: 1
+    Name: Level
+  - _stat: 0
+    Name: Experience
+  - _stat: 1
+    Name: Speed
+  - _stat: 1
+    Name: Luck
+  - _stat: 1
+    Name: AoE
   <FloatStats>k__BackingField: []
   <StringStats>k__BackingField: []

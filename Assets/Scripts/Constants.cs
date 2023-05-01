@@ -14,5 +14,10 @@ public static class Constants
         public static string MaxHP= nameof(MaxHP);
         public static string PP = nameof(PP);
         public static string MaxPP = nameof(MaxPP);
+        public static string Level = nameof(Level);
+        public static string Experience = nameof(Experience);
+        public static string Speed = nameof(Speed);
+        public static string Luck = nameof(Luck);
+        public static string AoE = nameof(AoE);
     }
 }

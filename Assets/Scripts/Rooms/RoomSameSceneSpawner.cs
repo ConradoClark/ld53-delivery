@@ -23,10 +23,12 @@ public class RoomSameSceneSpawner : RoomSpawner
     public override IEnumerable<IEnumerable<Action>> Spawn(Room sourceRoom)
     {
         _player.MoveController.BlockMovement(this);
-        _player.transform.position = transform.position;
         yield return _screenTransition.FadeIn().AsCoroutine();
+
         sourceRoom.Deactivate();
         _roomObject.Room.Activate();
+
+        _player.transform.position = transform.position;
 
         _player.MoveController.UnblockMovement(this);
         yield return _screenTransition.FadeOut().AsCoroutine();

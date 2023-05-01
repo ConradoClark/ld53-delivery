@@ -70,7 +70,8 @@ public class Weapon : BaseGameObject
 
     private int CalculateDamage()
     {
-        return BaseDamage;
+        var stats = Source.GetStats();
+        return BaseDamage + stats.Ints[Constants.StatNames.Attack];
     }
 
     private float CalculateRange()

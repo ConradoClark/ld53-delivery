@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Licht.Unity.Objects;
+using Licht.Unity.Objects.Stats;
 using UnityEngine;
 
 [RequireComponent(typeof(Damageable))]
 public class LoseHPWhenDamaged : BaseGameObject
 {
-    [field:SerializeField]
+    [field: SerializeField]
     public StatsHolder StatsHolder { get; private set; }
     private Damageable _damageable;
 
@@ -35,11 +36,11 @@ public class LoseHPWhenDamaged : BaseGameObject
     {
         var stats = StatsHolder.GetStats();
         var currentHP = stats.Ints[Constants.StatNames.HP];
-        stats.Ints[Constants.StatNames.HP] = Math.Clamp(currentHP - CalculateDamage(obj), 0, currentHP);
+        stats.Ints[Constants.StatNames.HP] = Math.Clamp(currentHP - CalculateDamage(obj, stats), 0, currentHP);
     }
 
-    private int CalculateDamage(Damageable.DamageArgs obj)
+    private int CalculateDamage(Damageable.DamageArgs obj, ObjectStats stats)
     {
-        return obj.BaseDamage;
+        return Math.Max(1, obj.BaseDamage - stats.Ints[Constants.StatNames.Defense]);
     }
 }

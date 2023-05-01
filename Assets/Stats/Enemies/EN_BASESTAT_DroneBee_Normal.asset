@@ -17,9 +17,11 @@ MonoBehaviour:
     Name: Attack
   - _stat: 1
     Name: Defense
-  - _stat: 5
+  - _stat: 15
     Name: MaxHP
-  - _stat: 5
+  - _stat: 15
     Name: HP
+  - _stat: 5
+    Name: Experience
   <FloatStats>k__BackingField: []
   <StringStats>k__BackingField: []

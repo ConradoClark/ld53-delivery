@@ -28,18 +28,25 @@ public class AIAction_NoticePlayer : BaseAIAction
     {
         base.OnAwake();
         _exclamationPool = SceneObject<UIGenericPoolManager>.Instance().GetEffect(ExclamationPrefab);
-        _mainCamera = Camera.main;
+        _mainCamera = SceneObject<GameCamera>.Instance().Camera;
         _uiCamera = SceneObject<UICamera>.Instance().Camera;
     }
 
     public override IEnumerable<IEnumerable<Action>> Execute(Func<bool> breakCondition)
     {
-        _exclamationPool.TryGetFromPool(out _currentExclamation, effect =>
+        yield return TimeYields.WaitMilliseconds(GameTimer, NoticeDelayInMs, breakCondition: breakCondition);
+        if (_exclamationPool.TryGetFromPool(out _currentExclamation))
         {
             var pos = transform.position + EffectOffset;
-            effect.transform.position = _uiCamera.ViewportToWorldPoint(_mainCamera.WorldToViewportPoint(pos));
+            var viewPortPos = _mainCamera.WorldToViewportPoint(pos);
+            _currentExclamation.transform.position = _uiCamera.ViewportToWorldPoint(viewPortPos);
+        }
+        yield return TimeYields.WaitMilliseconds(GameTimer, NoticeDelayInMs, breakCondition: breakCondition, step: _ =>
+        {
+            var pos = transform.position + EffectOffset;
+            var viewPortPos = _mainCamera.WorldToViewportPoint(pos);
+            _currentExclamation.transform.position = _uiCamera.ViewportToWorldPoint(viewPortPos);
         });
-        yield return TimeYields.WaitMilliseconds(GameTimer, NoticeDelayInMs, breakCondition: breakCondition);
     }
 
     public override void OnInterrupt()

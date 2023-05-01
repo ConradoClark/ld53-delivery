@@ -10,20 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1958948310, guid: 9ac7545d97626a347848c95be2062254, type: 3}
-  m_Name: STAT_Character
+  m_Name: EN_BASESTAT_DroneBee_Rare
   m_EditorClassIdentifier: 
   <IntStats>k__BackingField:
   - _stat: 1
     Name: Attack
-  - _stat: 1
+  - _stat: 2
     Name: Defense
   - _stat: 30
     Name: MaxHP
   - _stat: 30
     Name: HP
-  - _stat: 15
-    Name: MaxPP
-  - _stat: 0
-    Name: PP
+  - _stat: 20
+    Name: Experience
   <FloatStats>k__BackingField: []
   <StringStats>k__BackingField: []

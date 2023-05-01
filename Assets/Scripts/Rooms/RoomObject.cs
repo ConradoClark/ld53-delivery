@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomObject : BaseGameObject
 {
+    [field:SerializeField]
     public Room Room { get; private set; }
 
     [field:SerializeField]

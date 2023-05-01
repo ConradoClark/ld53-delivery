@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Licht.Impl.Orchestration;
+using Licht.Unity.Builders;
+using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using UnityEngine;
 
@@ -8,6 +10,15 @@ public class EnemyDieWhenZeroHP : BaseGameObject
 {
     [field: SerializeField]
     public Enemy Enemy { get; private set; }
+
+    private PlayerIdentifier _player;
+
+
+    protected override void OnAwake()
+    {
+        base.OnAwake();
+        _player = _player.FromScene(true);
+    }
 
     protected override void OnEnable()
     {
@@ -44,5 +55,27 @@ public class EnemyDieWhenZeroHP : BaseGameObject
 
         OnDeath?.Invoke();
         Enemy.EndEffect();
+
+        var stats = _player.PlayerStats.GetStats();
+        stats.Ints[Constants.StatNames.Experience] += Enemy.CurrentStats.Ints[Constants.StatNames.Experience];
+
+        DefaultMachinery.AddBasicMachine(TimeWarp());
+    }
+
+    private IEnumerable<IEnumerable<Action>> TimeWarp()
+    {
+        yield return new LerpBuilder(f => GameTimer.Multiplier = f, () => GameTimer.Multiplier)
+            .SetTarget(0.01f)
+            .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
+            .Over(0.2f)
+            .UsingTimer(UITimer)
+            .Build();
+
+        yield return new LerpBuilder(f => GameTimer.Multiplier = f, () => GameTimer.Multiplier)
+            .SetTarget(1)
+            .Easing(EasingYields.EasingFunction.QuadraticEaseOut)
+            .Over(0.3f)
+            .UsingTimer(UITimer)
+            .Build();
     }
 }

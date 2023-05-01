@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 public class Waypoint : BaseGameObject
 {
     private WaypointManager _waypointManager;
+    [field:SerializeField]
     public RoomObject RoomObject { get; private set; }
 
     protected override void OnAwake()

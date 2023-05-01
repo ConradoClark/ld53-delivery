@@ -47,20 +47,16 @@ public class Enemy : PooledComponent
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (!FixedObject) return;
-        Randomize();
-        OnActivation();
-    }
 
-    protected override void OnActivation()
-    {
-        base.OnActivation();
         _counterPool.TryGetFromPool(out _, counter =>
         {
             counter.Source = this;
             counter.PositionOffset = HPBarPositionOffset;
             counter.Stats = CurrentStats;
         });
+
+        if (!FixedObject) return;
+        Randomize();
     }
 
     public event Action OnRandomize;
@@ -70,6 +66,14 @@ public class Enemy : PooledComponent
         if (CurrentStats!=null) DestroyImmediate(CurrentStats);
 
         CurrentStats = Instantiate(BaseStats);
+
+        _counterPool.TryGetFromPool(out _, counter =>
+        {
+            counter.Source = this;
+            counter.PositionOffset = HPBarPositionOffset;
+            counter.Stats = CurrentStats;
+        });
+
         OnRandomize?.Invoke();
 
         if (Type is EnemyType.Normal or EnemyType.Boss) return;

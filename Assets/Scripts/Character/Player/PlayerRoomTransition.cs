@@ -28,9 +28,10 @@ public class PlayerRoomTransition : BaseGameRunner
     protected override IEnumerable<IEnumerable<Action>> Handle()
     {
         if (_player.PhysicsObject.GetPhysicsTriggerWithSource(Trigger, out var source)
-            && source is LichtPhysicsCollisionDetector collisionDetector
-            && _physics.TryGetPhysicsObjectByCollider(collisionDetector.Triggers.FirstOrDefault(t => t.TriggeredHit).Collider, out var targetObject)
-            && targetObject.TryGetCustomObject<RoomExit>(out var targetExit)
+            && source is LichtPhysicsCollisionDetector { Triggers: { } } collisionDetector
+            && collisionDetector.Triggers.Any(t=>t.TriggeredHit)
+            && _physics.TryGetPhysicsObjectByCollider(collisionDetector.Triggers.FirstOrDefault(t => t.TriggeredHit).Collider, out var targetObject) 
+            && targetObject.TryGetCustomObject<RoomExit>(out var targetExit) 
             && targetExit.CanExit())
         {
             Debug.Log($"Exiting through:'{targetExit.gameObject.name}'");

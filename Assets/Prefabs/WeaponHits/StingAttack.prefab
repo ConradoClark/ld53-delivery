@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 7266514195910345356}
   - component: {fileID: 4515971778556661729}
   - component: {fileID: 7016814695106570437}
+  - component: {fileID: 4963620881720960567}
   m_Layer: 11
   m_Name: StingAttack
   m_TagString: Untagged
@@ -345,3 +346,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Effect>k__BackingField: {fileID: 11400000, guid: b6694c7202414e148b020500bd3dbc0e, type: 2}
+--- !u!114 &4963620881720960567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630397892465319191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3aff31ab72f1ef47bc49e6543f4eec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PooledComponent>k__BackingField: {fileID: 5640018076322483932}
+  <Distance>k__BackingField: 20
