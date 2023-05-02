@@ -24,6 +24,9 @@ public class CanBePickedUp : BaseGameObject
     [field: SerializeField]
     public Color DescriptionColor { get; set; }
 
+    [field: SerializeField]
+    public AudioClip Sound { get; private set; }
+
     protected override void OnAwake()
     {
         base.OnAwake();

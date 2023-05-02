@@ -10,6 +10,7 @@ using Licht.Unity.Physics;
 using Licht.Unity.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerInteract : BaseGameRunner
 {
@@ -29,6 +30,9 @@ public class PlayerInteract : BaseGameRunner
     private Camera _uiCamera;
 
     private InteractiveObject _activeInteractive;
+
+    [field:SerializeField]
+    public AudioSource InteractSound { get; private set; }
 
     protected override void OnAwake()
     {
@@ -64,6 +68,11 @@ public class PlayerInteract : BaseGameRunner
 
                 if (ConfirmAction.action.WasPerformedThisFrame())
                 {
+                    if (InteractSound != null)
+                    {
+                        InteractSound.pitch = 1f + Random.value * 0.2f;
+                        InteractSound.PlayOneShot(InteractSound.clip);
+                    }
                     _showingIcon = false;
                     InteractIcon.SetActive(false);
                     yield return interactive.Action.PerformAction().AsCoroutine();

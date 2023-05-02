@@ -26,6 +26,7 @@ public class EnemyDropPollenOnDeath : BaseGameObject
     {
         base.OnAwake();
         _effectsManager = _effectsManager.FromScene(true);
+        if (_effectsManager == null) return;
         _pool = _effectsManager.GetEffect(PollenPrefab);
     }
 
@@ -33,6 +34,8 @@ public class EnemyDropPollenOnDeath : BaseGameObject
     {
         base.OnEnable();
         _effectsManager ??= _effectsManager.FromScene(true);
+        if (_effectsManager == null) return;
+        _pool = _effectsManager.GetEffect(PollenPrefab);
         EnemyDeath.OnDeath += EnemyDeath_OnDeath;
     }
 
@@ -44,6 +47,9 @@ public class EnemyDropPollenOnDeath : BaseGameObject
 
     private void EnemyDeath_OnDeath()
     {
+        _effectsManager ??= _effectsManager.FromScene(true);
+        _pool ??= _effectsManager.GetEffect(PollenPrefab);
+
         var amount = Random.Range(MinQuantity, MaxQuantity + 1);
         _pool.TryGetManyFromPool(amount, out _, (comp, index) =>
         {

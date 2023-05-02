@@ -253,6 +253,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PhysicsObject>k__BackingField: {fileID: 1396702288351303709}
   <PickedUpOnTouch>k__BackingField: 1
+  <ShowDescription>k__BackingField: 0
+  <Description>k__BackingField: 
+  <DescriptionColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Sound>k__BackingField: {fileID: 8300000, guid: 55af2d1c35dbff7419ea854c76987bc9, type: 3}
 --- !u!114 &8508471536203150213
 MonoBehaviour:
   m_ObjectHideFlags: 0

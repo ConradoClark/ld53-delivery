@@ -5,6 +5,7 @@ using Licht.Unity.Builders;
 using Licht.Unity.Extensions;
 using Licht.Unity.Objects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyDieWhenZeroHP : BaseGameObject
 {
@@ -12,12 +13,17 @@ public class EnemyDieWhenZeroHP : BaseGameObject
     public Enemy Enemy { get; private set; }
 
     private PlayerIdentifier _player;
+    
+    [field:SerializeField]
+    public AudioSource Death { get; private set; }
 
+    private SFXManager _sfxManager;
 
     protected override void OnAwake()
     {
         base.OnAwake();
         _player = _player.FromScene(true);
+        _sfxManager = _sfxManager.FromScene();
     }
 
     protected override void OnEnable()
@@ -55,6 +61,12 @@ public class EnemyDieWhenZeroHP : BaseGameObject
 
         OnDeath?.Invoke();
         Enemy.EndEffect();
+
+        if (Death != null)
+        {
+            _sfxManager.GenericAudioSource.pitch = 0.8f + Random.value * 0.4f;
+            _sfxManager.GenericAudioSource.PlayOneShot(Death.clip);
+        }
 
         var stats = _player.PlayerStats.GetStats();
         stats.Ints[Constants.StatNames.Experience] += Enemy.CurrentStats.Ints[Constants.StatNames.Experience];

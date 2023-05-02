@@ -508,7 +508,6 @@ MonoBehaviour:
   CollisionDetectors:
   - {fileID: 4193305161830606887}
   AdditionalColliders:
-  - {fileID: 0}
   - {fileID: 7136278956672015295}
   - {fileID: 4497552737930559888}
   CalculatedSpeed: {x: 0, y: 0}
@@ -529,6 +528,7 @@ MonoBehaviour:
   <ShowDescription>k__BackingField: 1
   <Description>k__BackingField: 
   <DescriptionColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Sound>k__BackingField: {fileID: 0}
 --- !u!114 &8427229580763512498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
   <WeaponBases>k__BackingField:
   - Name: STING
     Description: STING
-    WeaponBase: {fileID: 908264102250405431, guid: 0db870c0a21cd1f47bad9069fdf0750b, type: 3}
+    WeaponBase: {fileID: 7021931442182786721, guid: 0db870c0a21cd1f47bad9069fdf0750b, type: 3}
     MinRarity: 0
     BaseDamage: 1
     Chance: 0.1
@@ -623,10 +623,31 @@ MonoBehaviour:
     Color: {r: 0.1254902, g: 0.13725491, b: 0.13725491, a: 1}
   - Name: STING+1
     Description: STING PLUS
-    WeaponBase: {fileID: 908264102250405431, guid: 0db870c0a21cd1f47bad9069fdf0750b, type: 3}
+    WeaponBase: {fileID: 7021931442182786721, guid: 0db870c0a21cd1f47bad9069fdf0750b, type: 3}
     MinRarity: 0.1
     BaseDamage: 2
     Chance: 0.2
+    Color: {r: 0.1254902, g: 0.13725491, b: 0.13725491, a: 1}
+  - Name: B.GOOP
+    Description: BOUNCIN GOO
+    WeaponBase: {fileID: 7021931442182786721, guid: e2ace92af375bee47a4515b1a91d104e, type: 3}
+    MinRarity: 0.1
+    BaseDamage: 1
+    Chance: 0.2
+    Color: {r: 0.1254902, g: 0.13725491, b: 0.13725491, a: 1}
+  - Name: B.GOOP+1
+    Description: B GOOPERS
+    WeaponBase: {fileID: 7021931442182786721, guid: e2ace92af375bee47a4515b1a91d104e, type: 3}
+    MinRarity: 0.1
+    BaseDamage: 2
+    Chance: 0.1
+    Color: {r: 0.1254902, g: 0.13725491, b: 0.13725491, a: 1}
+  - Name: B.STING+1
+    Description: BLUE STINGER
+    WeaponBase: {fileID: 908264102250405431, guid: c079b0fbb3abce94faa0665ccb6b1001, type: 3}
+    MinRarity: 0.1
+    BaseDamage: 2
+    Chance: 0.1
     Color: {r: 0.1254902, g: 0.13725491, b: 0.13725491, a: 1}
   <PickupInterface>k__BackingField: {fileID: 4283296760198124403}
 --- !u!114 &3337260206864464798

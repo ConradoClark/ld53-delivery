@@ -22,6 +22,8 @@ public class TreasureChest : PooledComponent, IGenerator<int,float>
     public Weapon Drop { get; private set; }
 
     private WeaponsManager _weaponsManager;
+
+    public bool Dropped { get; set; }
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -33,8 +35,15 @@ public class TreasureChest : PooledComponent, IGenerator<int,float>
         base.OnEnable();
         if (ActiveOnInitialization)
         {
+            Dropped = true;
             OnActivation();
         }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Dropped = false;
     }
 
     [Serializable]
@@ -52,6 +61,8 @@ public class TreasureChest : PooledComponent, IGenerator<int,float>
 
     protected override void OnActivation()
     {
+        if (!Dropped) return;
+
         base.OnActivation();
 
         var possibleWeapons = WeaponBases.Where(w => RarityFactor >= w.MinRarity)

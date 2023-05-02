@@ -39,6 +39,9 @@ public class Weapon : BaseGameObject
 
     private WeaponsManager _weaponsManager;
 
+    [field: SerializeField]
+    public AudioSource SFX { get; private set; }
+
     protected override void OnAwake()
     {
         base.OnAwake();
@@ -88,6 +91,12 @@ public class Weapon : BaseGameObject
 
     protected bool TrySpawnWeaponHit(out WeaponHit weaponHit, Transform target)
     {
+        if (SFX != null)
+        {
+            SFX.pitch = 0.8f + Random.value * 0.4f;
+            SFX.PlayOneShot(SFX.clip);
+        }
+
         var crit = CalculateCrit();
         return WeaponHitPoolManager.GetEffect(WeaponHitPrefab)
             .TryGetFromPool(out weaponHit, hit =>

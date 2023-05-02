@@ -21,6 +21,9 @@ public class PickupObjects : BaseGameRunner
 
     public CanBePickedUp CurrentHover { get;private set; }
 
+    [field: SerializeField]
+    public AudioSource PickupSound { get; private set; }
+
     private LichtPhysics _physics;
     protected override void OnAwake()
     {
@@ -50,6 +53,10 @@ public class PickupObjects : BaseGameRunner
                     break;
                 }
 
+                if (PickupSound != null)
+                {
+                    PickupSound.PlayOneShot(pickup.Sound == null ? PickupSound.clip : pickup.Sound);
+                }
                 pickup.Pickup();
                 break;
             }

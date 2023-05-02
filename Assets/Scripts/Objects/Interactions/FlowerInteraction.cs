@@ -44,6 +44,8 @@ public class FlowerInteraction : InteractiveAction
     private UI_ScreenFlash _flash;
     private Color _startingColor;
 
+    public MainSong MainSong;
+
     public enum FlowerEvents
     {
         OnPollinate
@@ -58,6 +60,7 @@ public class FlowerInteraction : InteractiveAction
         _flash = _flash.FromScene(true);
         _startingColor = FlowerSpriteRenderer.color;
         _eventPublisher = this.RegisterAsEventPublisher<FlowerEvents>();
+        MainSong = MainSong.FromScene(true);
 
     }
 
@@ -97,6 +100,8 @@ public class FlowerInteraction : InteractiveAction
             yield break;
         }
 
+        MainSong.Song.Pause();
+
         _eventPublisher.PublishEvent(FlowerEvents.OnPollinate);
 
         yield return _flash.FadeIn().AsCoroutine();
@@ -104,5 +109,7 @@ public class FlowerInteraction : InteractiveAction
         yield return _flash.FadeOut().AsCoroutine();
 
         yield return SuccessfullyPollinated.PerformAction().AsCoroutine();
+
+        MainSong.Song.UnPause();
     }
 }

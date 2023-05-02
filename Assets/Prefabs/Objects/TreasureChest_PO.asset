@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TreasureChest_PO
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8362917039272259639, guid: 514e975d102869f4d97174f98da4bf81, type: 3}
-  DefaultPoolSize: 30
+  DefaultPoolSize: 90
   Type: 0

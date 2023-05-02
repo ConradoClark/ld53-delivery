@@ -45,11 +45,15 @@ public class EnemyDropItemOnDeath : BaseGameObject
 
     private void EnemyDeath_OnDeath()
     {
+        _poolManager ??= _poolManager.FromScene(true);
+        _pool ??= _poolManager.GetEffect(TreasurePrefab);
+
         var stats = EnemyStats.GetStats();
         if (Random.value > stats.Floats[Constants.StatNames.DropChance]) return;
 
         _pool.TryGetFromPool(out _, comp =>
         {
+            comp.Dropped = true;
             comp.Component.transform.position = transform.position;
             comp.RarityFactor = stats.Floats[Constants.StatNames.Rarity];
         });

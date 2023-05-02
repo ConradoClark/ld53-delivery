@@ -26,6 +26,6 @@ MonoBehaviour:
   <FloatStats>k__BackingField:
   - _stat: 0.3
     Name: Rarity
-  - _stat: 0.5
+  - _stat: 0.6
     Name: DropChance
   <StringStats>k__BackingField: []

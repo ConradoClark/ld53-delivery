@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Licht.Unity.Extensions;
 using Licht.Unity.Objects.Stats;
 using Licht.Unity.Physics;
 using Licht.Unity.Pooling;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WeaponHit : PooledComponent
 {
@@ -34,10 +36,16 @@ public class WeaponHit : PooledComponent
 
     private List<LichtPhysicsObject> _activatedFor;
 
+    [field:SerializeField]
+    public AudioSource ImpactSound { get; private set; }
+
+
+    private SFXManager _sfxManager;
     protected override void OnAwake()
     {
         base.OnAwake();
         PhysicsObject.AddCustomObject(this);
+        _sfxManager = _sfxManager.FromScene();
     }
 
     protected override void OnEnable()
@@ -58,6 +66,12 @@ public class WeaponHit : PooledComponent
             registered = true;
             OnWeaponHitContact?.Invoke(target);
             _activatedFor.Add(target);
+
+            if (ImpactSound != null)
+            {
+                _sfxManager.GenericAudioSource.pitch = 0.8f + Random.value * 0.4f;
+                _sfxManager.GenericAudioSource.PlayOneShot(ImpactSound.clip);
+            }
         }
 
         if (Stays) return registered;

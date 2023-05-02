@@ -19,6 +19,9 @@ public class LevelUp : BaseGameObject
     [field: SerializeField]
     public ScriptPrefab Effect { get; private set; }
 
+    [field: SerializeField]
+    public AudioSource LevelUpSound { get; private set; }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -38,6 +41,11 @@ public class LevelUp : BaseGameObject
             Constants.StatNames.Luck,
             Constants.StatNames.AoE,
         };
+
+        if (LevelUpSound != null)
+        {
+            LevelUpSound.PlayOneShot(LevelUpSound.clip);
+        }
 
         var stat = possibleStatus[Random.Range(0, possibleStatus.Length)];
 

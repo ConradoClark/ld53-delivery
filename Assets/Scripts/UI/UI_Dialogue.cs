@@ -8,6 +8,7 @@ using Licht.Unity.Objects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class UI_Dialogue : BaseGameObject
 {
@@ -22,6 +23,8 @@ public class UI_Dialogue : BaseGameObject
 
     [field:SerializeField]
     public GameObject Cursor { get; private set; }
+    [field: SerializeField]
+    public AudioSource TypingSound { get; private set; }
 
     public IEnumerable<IEnumerable<Action>> ShowText(string text, bool showCursor=true)
     {
@@ -33,6 +36,11 @@ public class UI_Dialogue : BaseGameObject
 
         for (var i = 0; i < text.Length; i++)
         {
+            if (TypingSound != null){
+                TypingSound.pitch = 1f + Random.value * 0.5f;
+                TypingSound.Play();
+            }
+
             TextComponent.text = text[..i];
             yield return TimeYields.WaitMilliseconds(GameTimer, CharacterFrequencyInMs, 
                 breakCondition:() =>
